@@ -1,0 +1,105 @@
+import { HistoryItemData } from "@/types/history";
+import { Images } from "./index";
+
+export const historyData: HistoryItemData[] = [
+  {
+    id: 1,
+    orderNumber: "#SH-2841",
+    date: "April 25, 2025",
+    pDate: "۵ اردیبهشت ۱۴۰۴",
+    time: "10:24 AM",
+    total: 75000,
+    status: "completed",
+    category: "Coffee",
+    items: [
+      {
+        id: 3,
+        name: "Cappuccino",
+        pName: "کاپوچینو",
+        image: Images.Latte,
+        quantity: 1,
+        price: 75000,
+      },
+    ],
+  },
+  {
+    id: 2,
+    orderNumber: "#SH-2839",
+    date: "April 22, 2025",
+    pDate: "۲ اردیبهشت ۱۴۰۴",
+    time: "03:15 PM",
+    total: 85000,
+    status: "completed",
+    category: "Coffee",
+    items: [
+      {
+        id: 8,
+        name: "Ice Latte",
+        pName: "آیس لاته",
+        image: Images.IceLatte,
+        quantity: 1,
+        price: 85000,
+      },
+    ],
+  },
+  {
+    id: 3,
+    orderNumber: "#SH-2835",
+    date: "April 18, 2025",
+    pDate: "۲۹ فروردین ۱۴۰۴",
+    time: "11:00 AM",
+    total: 45000,
+    status: "completed",
+    category: "Food",
+    items: [
+      {
+        id: 14,
+        name: "Croissant",
+        pName: "کروسان",
+        image: Images.Caramel,
+        quantity: 1,
+        price: 45000,
+      },
+    ],
+  },
+  {
+    id: 4,
+    orderNumber: "#SH-2830",
+    date: "April 15, 2025",
+    pDate: "۲۶ فروردین ۱۴۰۴",
+    time: "09:30 AM",
+    total: 150000,
+    status: "cancelled",
+    category: "Coffee",
+    items: [
+      {
+        id: 4,
+        name: "Latte",
+        pName: "لاته",
+        image: Images.Latte,
+        quantity: 2,
+        price: 80000,
+      },
+    ],
+  },
+  {
+    id: 5,
+    orderNumber: "#SH-2825",
+    date: "April 10, 2025",
+    pDate: "۲۱ فروردین ۱۴۰۴",
+    time: "06:45 PM",
+    total: 95000,
+    status: "completed",
+    category: "Snacks",
+    items: [
+      {
+        id: 7,
+        name: "Matcha Latte",
+        pName: "ماچا لاته",
+        image: Images.Matcha,
+        quantity: 1,
+        price: 95000,
+      },
+    ],
+  },
+];
