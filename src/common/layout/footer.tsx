@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
 import {
   FiInstagram,
   FiTwitter,
@@ -46,18 +45,16 @@ export const Footer = () => {
 
   return (
     <footer className="relative w-full bg-gradient-to-b from-state-500 lg:pb-0 pb-24 overflow-hidden">
-      <div className="absolute w-full h-[1px] top-0 left-0 bg-gradient-to-l via-primary-500" />
+      {/* خط بالای فوتر */}
+      <div className="absolute w-full h-[1px] top-0 left-0 bg-gradient-to-l from-transparent via-primary-500 to-transparent" />
+
+      {/* درخشش طلایی */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-primary-500/10 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 lg:px-0 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 ">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="flex flex-col gap-4 lg:col-span-1"
-          >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+          {/* ==================== ستون ۱: لوگو ==================== */}
+          <div className="flex flex-col gap-4 lg:col-span-1">
             <Link href="/" className="flex flex-col">
               <h3 className="text-3xl font-serif text-primary-400 tracking-wider">
                 SHAHIN
@@ -72,31 +69,24 @@ export const Footer = () => {
               ingredients and passion since 2018.
             </p>
 
+            {/* شبکه‌های اجتماعی */}
             <div className="flex items-center gap-3 mt-2">
               {socialLinks.map((social, index) => (
-                <motion.a
+                <a
                   key={index}
                   href={social.href}
                   aria-label={social.label}
-                  whileHover={{ y: -3, scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
                   className="w-10 h-10 flex items-center justify-center rounded-full bg-white/5 border border-white/10 text-secondary-300 hover:bg-primary-500 hover:text-state-500 hover:border-primary-500 transition-colors duration-300"
                 >
                   <social.icon className="w-4 h-4" />
-                </motion.a>
+                </a>
               ))}
             </div>
-          </motion.div>
+          </div>
 
-          {footerLinks.map((section, idx) => (
-            <motion.div
-              key={section.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 * (idx + 1) }}
-              className="flex flex-col gap-4"
-            >
+          {/* ==================== ستون‌های ۲ و ۳: لینک‌ها ==================== */}
+          {footerLinks.map((section) => (
+            <div key={section.title} className="flex flex-col gap-4">
               <div className="flex w-full max-lg:justify-between items-center gap-1">
                 <h4 className="text-base font-serif text-neutral-50">
                   {section.title}
@@ -122,16 +112,11 @@ export const Footer = () => {
                   </li>
                 ))}
               </ul>
-            </motion.div>
+            </div>
           ))}
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-col gap-4"
-          >
+          {/* ==================== ستون ۴: تماس ==================== */}
+          <div className="flex flex-col gap-4">
             <div className="flex items-center gap-1">
               <h4 className="text-base font-serif text-neutral-50">
                 Get in Touch
@@ -156,26 +141,27 @@ export const Footer = () => {
               </li>
             </ul>
 
+            {/* فرم خبرنامه */}
             <div className="relative w-full">
               <input
                 type="email"
                 placeholder="Your email..."
-                className="w-full bg-white/5 border border-white/10 text-neutral-50 placeholder-secondary-500 text-sm rounded-full py-2 pl-4 pr-12 focus:outline-none focus:border-primary-500/50 focus:bg-white/10 transition-all duration-300"
+                className="w-full bg-white/5 border border-white/10 text-neutral-50 placeholder-secondary-500 text-sm rounded-full py-2 pl-4 pr-12 focus:outline-none focus:border-primary-500/50 focus:bg-white/10 transition-colors duration-300"
               />
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
+              <button
                 aria-label="Subscribe"
                 className="absolute right-1.5 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-primary-500 hover:bg-primary-400 text-state-500 rounded-full transition-colors duration-300"
               >
                 <FiSend className="w-4 h-4" />
-              </motion.button>
+              </button>
             </div>
-          </motion.div>
+          </div>
         </div>
 
+        {/* خط جداکننده */}
         <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-primary-600/50 mb-6 mt-10 to-transparent" />
 
+        {/* بخش پایین: کپی‌رایت */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-secondary-500">
           <p className="text-center md:text-left">
             © {currentYear}{" "}

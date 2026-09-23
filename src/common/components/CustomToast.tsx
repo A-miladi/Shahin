@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import {
   FiCheckCircle,
   FiXCircle,
@@ -22,6 +21,7 @@ interface ToastConfig {
   glow: string;
   defaultTitle: string;
   defaultPTitle: string;
+  animation: string;
 }
 
 const config: Record<ToastType, ToastConfig> = {
@@ -33,6 +33,7 @@ const config: Record<ToastType, ToastConfig> = {
     glow: "shadow-[0_0_30px_rgba(104,123,96,0.25)]",
     defaultTitle: "Success",
     defaultPTitle: "موفق",
+    animation: "animate-toast-pulse",
   },
   error: {
     icon: FiXCircle,
@@ -42,6 +43,7 @@ const config: Record<ToastType, ToastConfig> = {
     glow: "shadow-[0_0_30px_rgba(201,74,66,0.25)]",
     defaultTitle: "Error",
     defaultPTitle: "خطا",
+    animation: "animate-toast-shake",
   },
   warning: {
     icon: FiAlertTriangle,
@@ -51,6 +53,7 @@ const config: Record<ToastType, ToastConfig> = {
     glow: "shadow-[0_0_30px_rgba(168,117,50,0.25)]",
     defaultTitle: "Warning",
     defaultPTitle: "هشدار",
+    animation: "animate-toast-pulse-soft",
   },
   info: {
     icon: FiInfo,
@@ -60,6 +63,7 @@ const config: Record<ToastType, ToastConfig> = {
     glow: "shadow-[0_0_30px_rgba(102,123,135,0.25)]",
     defaultTitle: "Info",
     defaultPTitle: "اطلاع",
+    animation: "animate-toast-pulse-soft",
   },
   loading: {
     icon: FiLoader,
@@ -69,6 +73,7 @@ const config: Record<ToastType, ToastConfig> = {
     glow: "shadow-[0_0_30px_rgba(191,166,145,0.25)]",
     defaultTitle: "Loading",
     defaultPTitle: "در حال بارگذاری",
+    animation: "animate-toast-spin",
   },
 };
 
@@ -93,12 +98,9 @@ export const CustomToast: React.FC<CustomToastProps> = ({
   const Icon = cfg.icon;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: -20, scale: 0.95 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      exit={{ opacity: 0, y: -20, scale: 0.95 }}
-      transition={{ duration: 0.3, ease: "easeOut" }}
+    <div
       className={`
+        animate-toast-enter
         relative flex items-start gap-3 p-4 pr-3 rounded-2xl
         bg-state-400/95 backdrop-blur-xl
         border ${cfg.border}
@@ -121,30 +123,16 @@ export const CustomToast: React.FC<CustomToastProps> = ({
         }`}
       />
 
-      <motion.div
-        animate={
-          type === "loading"
-            ? { rotate: 360 }
-            : type === "success"
-              ? { scale: [1, 1.15, 1] }
-              : type === "error"
-                ? { x: [0, -3, 3, -3, 3, 0] }
-                : { scale: [1, 1.1, 1] }
-        }
-        transition={{
-          duration: type === "loading" ? 1 : 0.6,
-          repeat: type === "loading" ? Infinity : 0,
-          repeatDelay: type === "loading" ? 0 : 1.5,
-          ease: "easeInOut",
-        }}
+      <div
         className={`
+          ${cfg.animation}
           relative flex-shrink-0
           w-10 h-10 rounded-xl flex items-center justify-center
           ${cfg.bg} border ${cfg.border}
         `}
       >
         <Icon className={`w-5 h-5 ${cfg.color}`} />
-      </motion.div>
+      </div>
 
       <div className="flex-1 min-w-0 pt-0.5">
         <div className="flex items-center gap-2 mb-1">
@@ -171,14 +159,12 @@ export const CustomToast: React.FC<CustomToastProps> = ({
         )}
       </div>
 
-      <motion.button
-        whileHover={{ scale: 1.1, rotate: 90 }}
-        whileTap={{ scale: 0.9 }}
+      <button
         onClick={() => toast.dismiss(t.id)}
-        className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-lg text-secondary-500 hover:text-neutral-50 hover:bg-white/5 transition-colors"
+        className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-lg text-secondary-500 hover:text-neutral-50 hover:bg-white/5 hover:scale-110 hover:rotate-90 active:scale-90 transition-all duration-300"
       >
         <FiX className="w-3.5 h-3.5" />
-      </motion.button>
-    </motion.div>
+      </button>
+    </div>
   );
 };

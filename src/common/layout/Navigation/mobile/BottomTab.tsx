@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { BiHome, BiReceipt, BiTimeFive } from "react-icons/bi";
 import type { IconType } from "react-icons";
 
@@ -60,19 +59,11 @@ export const BottomTab = () => {
           relative overflow-hidden
         "
       >
-        <AnimatePresence>
-          {isPending && (
-            <motion.div
-              initial={{ width: "0%", opacity: 1 }}
-              animate={{ width: "100%", opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              className="absolute top-0 left-0 right-0 h-[1px] z-20"
-            >
-              <div className="w-full h-full bg-gradient-to-r from-primary-600 via-primary-400 to-primary-600 shadow-[0_0_10px_rgba(170,142,119,0.6)]" />
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {isPending && (
+          <div className="absolute top-0 left-0 right-0 h-[1px] z-20 animate-tab-loading-fill">
+            <div className="w-full h-full bg-gradient-to-r from-primary-600 via-primary-400 to-primary-600 shadow-[0_0_10px_rgba(170,142,119,0.6)]" />
+          </div>
+        )}
 
         {TABS.map((tab) => {
           const isActive =
@@ -99,18 +90,19 @@ export const BottomTab = () => {
                 className={`
                   absolute inset-1 rounded-xl
                   transition-all duration-300
-                  ${isActive ? "bg-gradient-to-br from-primary-400/5 to-primary-500/5 via-primary-400/15" : "bg-transparent"}
+                  ${
+                    isActive
+                      ? "bg-gradient-to-br from-primary-400/5 to-primary-500/5 via-primary-400/15"
+                      : "bg-transparent"
+                  }
                 `}
               />
 
-              <motion.div
-                animate={isTabLoading ? { rotate: 360 } : { rotate: 0 }}
-                transition={
-                  isTabLoading
-                    ? { duration: 1, repeat: Infinity, ease: "linear" }
-                    : { duration: 0.3 }
-                }
-                className="relative z-10"
+              <div
+                className={`
+                  relative z-10
+                  ${isTabLoading ? "animate-tab-spin" : ""}
+                `}
               >
                 <Icon
                   size={22}
@@ -123,7 +115,7 @@ export const BottomTab = () => {
                     }
                   `}
                 />
-              </motion.div>
+              </div>
 
               <span
                 className={`
@@ -139,16 +131,9 @@ export const BottomTab = () => {
                 {tab.label}
               </span>
 
-              <AnimatePresence>
-                {isTabLoading && (
-                  <motion.span
-                    initial={{ scale: 0, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    exit={{ scale: 0, opacity: 0 }}
-                    className="absolute bottom-1 w-1 h-1 rounded-full bg-primary-400"
-                  />
-                )}
-              </AnimatePresence>
+              {isTabLoading && (
+                <span className="animate-tab-dot absolute bottom-1 w-1 h-1 rounded-full bg-primary-400" />
+              )}
             </Link>
           );
         })}

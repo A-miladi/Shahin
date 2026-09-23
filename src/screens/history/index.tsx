@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { motion } from "framer-motion";
 import { HistoryHeader } from "./components/HistoryHeader";
 import { HistoryFilter } from "./components/HistoryFilter";
 import { HistoryItem } from "./components/HistoryItem";
@@ -34,7 +33,7 @@ export const HistoryScreen = () => {
 
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-primary-500/5 blur-[120px] rounded-full pointer-events-none" />
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 lg:px-0">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 lg:pt-20 lg:px-0">
         <HistoryHeader />
 
         <HistoryFilter active={activeFilter} onChange={setActiveFilter} />

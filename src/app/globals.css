@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
+/* ==================== Theme ==================== */
+
 @theme {
   --font-audiowide: var(--font-audiowide);
   --font-sofia: var(--font-sofia);
   --font-trirong: var(--font-trirong);
-  /* =========================
-     Primary — Warm Champagne / Beige
-  ========================= */
 
+  /* Primary — Warm Champagne / Beige */
   --color-primary-25: #fcfaf7;
   --color-primary-50: #f7f2ec;
   --color-primary-100: #eee5dc;
@@ -22,10 +22,7 @@
   --color-primary-950: #2a201b;
   --color-primary-999: #12100e;
 
-  /* =========================
-     Secondary — Warm Gray
-  ========================= */
-
+  /* Secondary — Warm Gray */
   --color-secondary-50: #f5f3f1;
   --color-secondary-100: #e9e5e1;
   --color-secondary-200: #d8d2cc;
@@ -38,10 +35,7 @@
   --color-secondary-900: #302d2a;
   --color-secondary-950: #1d1b19;
 
-  /* =========================
-     Neutral — Black / Ivory
-  ========================= */
-
+  /* Neutral — Black / Ivory */
   --color-neutral-50: #faf9f7;
   --color-neutral-100: #f2f0ed;
   --color-neutral-200: #e3e0dc;
@@ -54,10 +48,7 @@
   --color-neutral-900: #242321;
   --color-neutral-950: #0b0b0a;
 
-  /* =========================
-     State / Dark
-  ========================= */
-
+  /* State / Dark */
   --color-state-50: #555250;
   --color-state-100: #43413f;
   --color-state-200: #343331;
@@ -66,31 +57,24 @@
   --color-state-450: #1d1c1b99;
   --color-state-500: #0c0c0c;
 
-  /* =========================
-     Special
-  ========================= */
-
+  /* Special */
   --color-special-100: #e8d1b5;
-
   --color-special-200: #b9825f;
-
   --color-special-300: #c94a42;
-
   --color-special-400: #667b87;
 
-  /* =========================
-     Action
-  ========================= */
-
+  /* Action */
   --color-action-200: #a87532;
-
   --color-action-300: #b83a35;
-
   --color-action-400: #687b60;
 }
+
+/* ==================== Base ==================== */
+
 button {
   cursor: pointer;
 }
+
 /* ==================== Custom Scrollbar ==================== */
 
 /* موبایل: مخفی کردن اسکرول‌بار */
@@ -110,14 +94,12 @@ button {
 
 /* دسکتاپ: اسکرول‌بار نازک طلایی */
 @media (min-width: 769px) {
-  /* Firefox */
   .custom-scrollbar,
   .custom-scrollbar * {
     scrollbar-width: thin !important;
     scrollbar-color: #aa8e77 #0c0c0c !important;
   }
 
-  /* WebKit (Chrome, Safari, Edge) */
   .custom-scrollbar::-webkit-scrollbar,
   .custom-scrollbar *::-webkit-scrollbar {
     width: 2px !important;
@@ -146,9 +128,9 @@ button {
     background: transparent !important;
   }
 }
+
 /* ==================== Safe Area Insets ==================== */
 
-/* Padding امن برای محتوای اصلی */
 .safe-top {
   padding-top: env(safe-area-inset-top, 0px);
 }
@@ -169,12 +151,299 @@ button {
   padding-right: env(safe-area-inset-right, 0px);
 }
 
-/* برای Bottom Sheet */
 .safe-bottom-sheet {
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
-/* برای LoadingBar که روی notch نیفتد */
 .safe-loading-top {
   top: env(safe-area-inset-top, 0px);
+}
+
+/* ==================== Fade Animations ==================== */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out both;
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.5s ease-out both;
+}
+
+/* تاخیرها */
+.delay-100 {
+  animation-delay: 0.1s;
+}
+.delay-200 {
+  animation-delay: 0.2s;
+}
+.delay-300 {
+  animation-delay: 0.3s;
+}
+.delay-400 {
+  animation-delay: 0.4s;
+}
+.delay-500 {
+  animation-delay: 0.5s;
+}
+.delay-600 {
+  animation-delay: 0.6s;
+}
+
+/* ==================== Special Animations ==================== */
+
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spinSlow 2s linear infinite;
+}
+
+@keyframes pulseSoft {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+.animate-pulse-soft {
+  animation: pulseSoft 0.5s ease-in-out 3;
+}
+
+@keyframes historyShimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.history-shimmer {
+  animation: historyShimmer 1.5s ease-in-out infinite;
+  animation-delay: 1.5s;
+}
+
+/* ==================== Loading Bar Animations ==================== */
+
+@keyframes loadingBarFill {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes loadingBarShimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+@keyframes loadingBarFadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.animate-loading-fill {
+  animation: loadingBarFill 2s ease-out forwards;
+}
+
+.animate-loading-shimmer {
+  animation: loadingBarShimmer 1.5s ease-in-out infinite;
+}
+
+.animate-loading-fade-out {
+  animation: loadingBarFadeOut 0.3s ease-out forwards;
+}
+
+/* ==================== Toast Animations ==================== */
+
+@keyframes toastEnter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -20px, 0) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+.animate-toast-enter {
+  animation: toastEnter 0.3s ease-out both;
+}
+
+@keyframes toastSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-toast-spin {
+  animation: toastSpin 1s linear infinite;
+}
+
+@keyframes toastPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+.animate-toast-pulse {
+  animation: toastPulse 0.6s ease-in-out;
+  animation-delay: 1.5s;
+  animation-fill-mode: both;
+}
+
+@keyframes toastShake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  15%,
+  45%,
+  75% {
+    transform: translateX(-3px);
+  }
+  30%,
+  60%,
+  90% {
+    transform: translateX(3px);
+  }
+}
+
+.animate-toast-shake {
+  animation: toastShake 0.6s ease-in-out;
+  animation-delay: 1.5s;
+  animation-fill-mode: both;
+}
+
+@keyframes toastPulseSoft {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.animate-toast-pulse-soft {
+  animation: toastPulseSoft 0.6s ease-in-out;
+  animation-delay: 1.5s;
+  animation-fill-mode: both;
+}
+
+/* ==================== Bottom Tab Animations ==================== */
+
+@keyframes tabLoadingFill {
+  from {
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  to {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+
+.animate-tab-loading-fill {
+  animation: tabLoadingFill 0.6s ease-out forwards;
+}
+
+@keyframes tabSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-tab-spin {
+  animation: tabSpin 1s linear infinite;
+}
+
+@keyframes tabDotAppear {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-tab-dot {
+  animation: tabDotAppear 0.3s ease-out forwards;
+}
+
+/* ==================== Reduced Motion ==================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in,
+  .animate-fade-up,
+  .animate-spin-slow,
+  .animate-pulse-soft,
+  .history-shimmer,
+  .animate-loading-fill,
+  .animate-loading-shimmer,
+  .animate-loading-fade-out,
+  .animate-toast-enter,
+  .animate-toast-spin,
+  .animate-toast-pulse,
+  .animate-toast-shake,
+  .animate-toast-pulse-soft,
+  .animate-tab-loading-fill,
+  .animate-tab-spin,
+  .animate-tab-dot {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
+  }
 }

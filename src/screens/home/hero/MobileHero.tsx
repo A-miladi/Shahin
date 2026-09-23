@@ -82,7 +82,7 @@ export const MobileHero = () => {
 
       <motion.div
         initial={false}
-        animate={{ scale: animate ? 1.15 : 1 }}
+        animate={{ scale: animate ? 1.4 : 1 }}
         transition={{
           duration: 20,
           repeat: Infinity,

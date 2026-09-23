@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import { OrderSteps } from "./components/OrderSteps";
 import { CustomerInfo } from "./components/CustomerInfo";
 import { DeliveryMethod } from "./components/DeliveryMethod";
@@ -53,38 +52,18 @@ export const OrderScreen = () => {
     >
       <ParticleBackground />
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 lg:px-0">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="flex flex-col items-center mb-10"
-        >
-          <motion.h1
-            initial={{ letterSpacing: "0.5em", opacity: 0 }}
-            animate={{ letterSpacing: "0.02em", opacity: 1 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-            className="text-3xl md:text-4xl font-audiowide text-neutral-50 mb-2"
-          >
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 lg:pt-20 lg:px-0">
+        <div className="flex flex-col items-center mb-10 animate-fade-up">
+          <h1 className="text-3xl md:text-4xl font-audiowide text-neutral-50 mb-2">
             Checkout
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-            className="text-sm text-secondary-400"
-          >
+          </h1>
+          <p className="text-sm text-secondary-400">
             Complete your order in 3 simple steps
-          </motion.p>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-            className="text-xs text-secondary-500 mt-1"
-          >
+          </p>
+          <p className="text-xs text-secondary-500 mt-1">
             سفارش خود را در ۳ مرحله ساده تکمیل کنید
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
 
         <OrderSteps currentStep={currentStep} />
 
