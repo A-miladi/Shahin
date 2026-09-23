@@ -24,7 +24,12 @@ export const HistoryScreen = () => {
   };
 
   return (
-    <main className="relative w-full min-h-screen bg-state-500 pt-8 lg:pt-32 pb-24 lg:pb-16 overflow-hidden">
+    <main
+      className="relative w-full min-h-screen bg-state-500 pb-24 lg:pb-16 overflow-hidden"
+      style={{
+        paddingTop: "calc(2rem + env(safe-area-inset-top, 0px))",
+      }}
+    >
       <ParticleBackground />
 
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-primary-500/5 blur-[120px] rounded-full pointer-events-none" />

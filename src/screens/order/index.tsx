@@ -45,7 +45,12 @@ export const OrderScreen = () => {
   };
 
   return (
-    <main className="relative w-full min-h-screen bg-state-500 pt-8 lg:pt-24 pb-16 overflow-hidden">
+    <main
+      className="relative w-full min-h-screen bg-state-500 pb-16 overflow-hidden"
+      style={{
+        paddingTop: "calc(2rem + env(safe-area-inset-top, 0px))",
+      }}
+    >
       <ParticleBackground />
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 lg:px-0">

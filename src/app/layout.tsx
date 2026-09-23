@@ -38,7 +38,7 @@ const trirong = Trirong({
 });
 
 export const viewport: Viewport = {
-  themeColor: "#aa8e77",
+  themeColor: "#0c0c0c",
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
@@ -137,7 +137,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
 
         <meta name="mobile-web-app-capable" content="yes" />
       </head>
-      <body className="min-h-full bg-black flex flex-col">
+      <body className="min-h-full bg-black flex flex-col safe-x">
         <ScrollToTop />
         <ToastProvider />
         <PaymentProvider>

@@ -22,6 +22,9 @@ export const LoadingBar = () => {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
           className="fixed top-0 left-0 right-0 z-[9999] h-[2px] bg-transparent"
+          style={{
+            top: "env(safe-area-inset-top, 0px)",
+          }}
         >
           <motion.div
             initial={{ width: "0%" }}
