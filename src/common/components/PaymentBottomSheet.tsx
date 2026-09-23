@@ -90,7 +90,7 @@ export const PaymentBottomSheet: React.FC<PaymentBottomSheetProps> = ({
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
             onClick={onClose}
-            className="fixed inset-0 z-50 bg-state-500/80 backdrop-blur-md"
+            className="fixed inset-0 z-50 bottom-0 bg-state-500/80 backdrop-blur-md"
           />
 
           <motion.div
@@ -104,10 +104,7 @@ export const PaymentBottomSheet: React.FC<PaymentBottomSheetProps> = ({
             onDragEnd={(_, info) => {
               if (info.offset.y > 100) onClose();
             }}
-            className="fixed left-0 right-0 z-[101] max-h-[90vh] bg-state-400 border-t border-primary-500/20 rounded-t-3xl overflow-hidden"
-            style={{
-              bottom: "env(safe-area-inset-bottom, 0px)",
-            }}
+            className="fixed bottom-0 left-0 right-0 z-[101] max-h-[90vh] bg-state-400 border-t border-primary-500/20 rounded-t-3xl overflow-hidden"
           >
             <div className="flex justify-center pt-3 pb-1 cursor-grab active:cursor-grabbing">
               <div className="w-12 h-1 rounded-full bg-white/20" />
@@ -294,7 +291,12 @@ export const PaymentBottomSheet: React.FC<PaymentBottomSheetProps> = ({
               </div>
             </div>
 
-            <div className="px-6 py-4 border-t border-white/5 bg-state-400">
+            <div
+              className="px-6 pt-4 border-t border-white/5 bg-state-400"
+              style={{
+                paddingBottom: "calc(1rem + env(safe-area-inset-bottom, 0px))",
+              }}
+            >
               <motion.button
                 whileHover={{ scale: isFormValid ? 1.02 : 1 }}
                 whileTap={{ scale: isFormValid ? 0.98 : 1 }}
