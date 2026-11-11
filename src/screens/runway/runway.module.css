@@ -293,14 +293,7 @@
   @media (display-mode: standalone) {
     .page { padding-bottom: 0; }
     .track {
-      --rail-arc: 28px;
-      --rail-safe-bottom: env(safe-area-inset-bottom, 0px);
-      grid-template-rows: minmax(0, 1fr) calc(160px + var(--rail-arc) + var(--rail-safe-bottom));
-    }
-    .card::before {
-      bottom: calc(var(--arc-drop, 0px) - var(--rail-arc) - var(--rail-safe-bottom));
-      border-end-start-radius: 0;
-      border-end-end-radius: 0;
+      grid-template-rows: minmax(0, 1fr) calc(160px + var(--rail-arc) - 8px);
     }
   }
 }
