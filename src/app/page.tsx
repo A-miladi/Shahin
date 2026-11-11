@@ -1,11 +1,5 @@
-import { LoadingBar } from "@/common/components/LoadingBar";
-import { HomeScreen } from "@/screens/home";
+import { Runway } from "@/screens/runway/Runway";
 
 export default function Home() {
-  return (
-    <>
-      <LoadingBar />
-      <HomeScreen />
-    </>
-  );
+  return <Runway />;
 }

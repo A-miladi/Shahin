@@ -6,21 +6,28 @@ export default function manifest(): MetadataRoute.Manifest {
     short_name: "Shahin",
     description:
       "More Than Just Coffee - Premium coffee and unique experience.",
+    id: "/",
+    scope: "/",
     start_url: "/",
     display: "standalone",
-    background_color: "#0c0c0c", // رنگ پس‌زمینه (state-500)
-    theme_color: "#aa8e77", // رنگ تم (primary-500)
-    orientation: "portrait",
+    background_color: "#050302",
+    theme_color: "#050302",
     icons: [
       {
-        src: "/icons/icon-192x192.png", // مسیر آیکون ۱۹۲x۱۹۲
+        src: "/icons/icon-192x192.png",
         sizes: "192x192",
         type: "image/png",
       },
       {
-        src: "/icons/icon-512x512.png", // مسیر آیکون ۵۱۲x۵۱۲
+        src: "/icons/icon-512x512.png",
         sizes: "512x512",
         type: "image/png",
+      },
+      {
+        src: "/icons/icon-maskable.png",
+        sizes: "512x512",
+        type: "image/png",
+        purpose: "maskable",
       },
     ],
   };

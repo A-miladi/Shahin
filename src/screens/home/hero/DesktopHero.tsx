@@ -3,9 +3,8 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import HeroImage from "../../../../public/images/DesktopHero.png";
-import { FaArrowRight, FaClock, FaTruckFast } from "react-icons/fa6";
-import { Button } from "@/common/ui/Button";
-import { FaShieldAlt } from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa6";
+import Link from "next/link";
 import { motion, Variants } from "motion/react";
 
 const fadeInUp: Variants = {
@@ -88,53 +87,16 @@ export const DesktopHero = () => {
               whileTap={{ scale: 0.95 }}
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >
-              <Button
-                variant="primary"
-                icon={FaArrowRight}
-                onClick={() => console.log("Order Now clicked!")}
+              <Link
+                href="/menu"
+                className="flex w-fit items-center gap-3 rounded-full bg-[#C49A6C] px-8 py-3.5 font-medium text-black transition-colors hover:bg-[#b08a5f]"
               >
-                Order Now
-              </Button>
+                View Menu <FaArrowRight aria-hidden="true" />
+              </Link>
             </motion.div>
           </motion.div>
         </motion.div>
 
-        <motion.div
-          variants={staggerContainer}
-          initial={false}
-          animate={animate ? "visible" : "hidden"}
-          className="absolute bottom-12 left-0 flex w-full gap-6 md:gap-10"
-        >
-          <motion.div
-            variants={fadeInUp}
-            className="flex items-center gap-3 text-gray-300 text-sm hover:text-white transition-colors cursor-pointer"
-          >
-            <div className="w-8 h-8 rounded-full border border-gray-600 flex items-center justify-center">
-              <FaClock className="w-4 h-4" />
-            </div>
-            <span>Fast Order</span>
-          </motion.div>
-
-          <motion.div
-            variants={fadeInUp}
-            className="flex items-center gap-3 text-gray-300 text-sm hover:text-white transition-colors cursor-pointer"
-          >
-            <div className="w-8 h-8 rounded-full border border-gray-600 flex items-center justify-center">
-              <FaTruckFast className="w-4 h-4" />
-            </div>
-            <span>Track Order</span>
-          </motion.div>
-
-          <motion.div
-            variants={fadeInUp}
-            className="flex items-center gap-3 text-gray-300 text-sm hover:text-white transition-colors cursor-pointer"
-          >
-            <div className="w-8 h-8 rounded-full border border-gray-600 flex items-center justify-center">
-              <FaShieldAlt className="w-4 h-4" />
-            </div>
-            <span>Secure Payment</span>
-          </motion.div>
-        </motion.div>
       </div>
     </section>
   );

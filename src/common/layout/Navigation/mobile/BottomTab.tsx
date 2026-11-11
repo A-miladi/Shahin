@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
-import { BiHome, BiReceipt, BiTimeFive } from "react-icons/bi";
+import { BiHome, BiBookOpen } from "react-icons/bi";
 import type { IconType } from "react-icons";
 
 interface TabItem {
@@ -14,9 +14,8 @@ interface TabItem {
 }
 
 const TABS: TabItem[] = [
-  { key: "order", label: "Order", href: "/order", icon: BiReceipt },
   { key: "home", label: "Home", href: "/", icon: BiHome },
-  { key: "history", label: "History", href: "/history", icon: BiTimeFive },
+  { key: "menu", label: "Menu", href: "/menu", icon: BiBookOpen },
 ];
 
 export const BottomTab = () => {
@@ -78,6 +77,7 @@ export const BottomTab = () => {
               key={tab.key}
               href={tab.href}
               aria-label={tab.label}
+              aria-current={isActive ? "page" : undefined}
               onClick={(e) => handleNavigation(e, tab.href, tab.key)}
               className="
                 relative flex flex-col items-center justify-center gap-1

@@ -1,20 +1,18 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { FiPlus, FiStar } from "react-icons/fi";
-import { menuData, CoffeeItem } from "@/data";
+import { motion } from "motion/react";
+import { FiStar } from "react-icons/fi";
+import { menuGroups } from "@/data";
 
-interface PopularItemsProps {
-  onAdd?: (item: CoffeeItem) => void;
-  onClick?: (item: CoffeeItem) => void;
-}
+const featuredNames = ["Iced Latte", "Americano", "Latte", "Mocha"];
 
-export const PopularItems: React.FC<PopularItemsProps> = ({
-  onAdd,
-  onClick,
-}) => {
-  const popularItems = menuData.filter((item) => item.isPopular);
+export const PopularItems = () => {
+  const popularItems = menuGroups
+    .flatMap((group) => group.categories)
+    .flatMap((category) => category.items)
+    .filter(([name]) => featuredNames.includes(name))
+    .map(([name, pName, image]) => ({ name, pName, image }));
 
   return (
     <section className="w-full max-w-7xl mx-auto py-10">
@@ -28,7 +26,7 @@ export const PopularItems: React.FC<PopularItemsProps> = ({
         <div className="flex items-center gap-2">
           <FiStar className="w-5 h-5 text-primary-500 fill-primary-500" />
           <h2 className="text-xl md:text-2xl font-serif text-neutral-50">
-            Today's Suggestions
+            Today&apos;s Suggestions
           </h2>
         </div>
       </motion.div>
@@ -36,14 +34,13 @@ export const PopularItems: React.FC<PopularItemsProps> = ({
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
         {popularItems.map((item, index) => (
           <motion.div
-            key={item.id}
+            key={item.name}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
             whileHover={{ y: -6 }}
-            onClick={() => onClick?.(item)}
-            className="group relative flex flex-col bg-state-400 border border-white/5 hover:border-primary-600/50 rounded-2xl overflow-hidden cursor-pointer transition-colors duration-300 shadow-lg hover:shadow-[0_20px_40px_-15px_rgba(170,142,119,0.2)]"
+            className="group relative flex flex-col bg-state-400 border border-white/5 hover:border-primary-600/50 rounded-2xl overflow-hidden transition-colors duration-300 shadow-lg hover:shadow-[0_20px_40px_-15px_rgba(170,142,119,0.2)]"
           >
             <div className="relative w-full aspect-square overflow-hidden bg-state-500">
               <motion.div
@@ -68,17 +65,6 @@ export const PopularItems: React.FC<PopularItemsProps> = ({
                 Popular
               </div>
 
-              <motion.button
-                whileHover={{ scale: 1.15, rotate: 90 }}
-                whileTap={{ scale: 0.9 }}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onAdd?.(item);
-                }}
-                className="absolute bottom-3 right-3 w-9 h-9 flex items-center justify-center bg-primary-500 hover:bg-primary-400 text-state-500 rounded-full shadow-lg transition-colors duration-300 z-10"
-              >
-                <FiPlus className="w-4 h-4" />
-              </motion.button>
             </div>
 
             <div className="flex flex-col p-4 bg-state-400">
@@ -92,28 +78,9 @@ export const PopularItems: React.FC<PopularItemsProps> = ({
                   </span>
                 </div>
 
-                <div className="flex flex-col items-end">
-                  <span className="text-primary-400 font-semibold text-sm whitespace-nowrap">
-                    {item.price.toLocaleString()}
-                  </span>
-                  <span className="text-[10px] text-secondary-500 uppercase tracking-wide">
-                    Toman
-                  </span>
-                </div>
+                <span className="text-sm font-semibold text-primary-400">-</span>
               </div>
 
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onAdd?.(item);
-                }}
-                className="w-full flex items-center justify-center gap-2 bg-white/5 hover:bg-primary-500 hover:text-state-500 text-secondary-300 text-xs font-medium py-2.5 rounded-xl transition-all duration-300"
-              >
-                <FiPlus className="w-3.5 h-3.5" />
-                Add to Cart
-              </motion.button>
             </div>
           </motion.div>
         ))}

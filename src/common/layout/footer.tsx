@@ -1,11 +1,5 @@
-"use client";
-
 import Link from "next/link";
 import {
-  FiInstagram,
-  FiTwitter,
-  FiFacebook,
-  FiSend,
   FiMapPin,
   FiPhone,
   FiMail,
@@ -21,26 +15,8 @@ export const Footer = () => {
       links: [
         { name: "Home", pName: "خانه", href: "/" },
         { name: "Menu", pName: "منو", href: "/menu" },
-        { name: "About", pName: "درباره ما", href: "/about" },
-        { name: "Contact", pName: "تماس", href: "/contact" },
       ],
     },
-    {
-      title: "Support",
-      pTitle: "پشتیبانی",
-      links: [
-        { name: "Track Order", pName: "پیگیری سفارش", href: "/track" },
-        { name: "FAQ", pName: "سوالات متداول", href: "/faq" },
-        { name: "Privacy Policy", pName: "حریم خصوصی", href: "/privacy" },
-        { name: "Terms of Service", pName: "شرایط استفاده", href: "/terms" },
-      ],
-    },
-  ];
-
-  const socialLinks = [
-    { icon: FiInstagram, href: "#", label: "Instagram" },
-    { icon: FiTwitter, href: "#", label: "Twitter" },
-    { icon: FiFacebook, href: "#", label: "Facebook" },
   ];
 
   return (
@@ -52,7 +28,7 @@ export const Footer = () => {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-primary-500/10 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 lg:px-0 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-8">
           {/* ==================== ستون ۱: لوگو ==================== */}
           <div className="flex flex-col gap-4 lg:col-span-1">
             <Link href="/" className="flex flex-col">
@@ -69,22 +45,9 @@ export const Footer = () => {
               ingredients and passion since 2018.
             </p>
 
-            {/* شبکه‌های اجتماعی */}
-            <div className="flex items-center gap-3 mt-2">
-              {socialLinks.map((social, index) => (
-                <a
-                  key={index}
-                  href={social.href}
-                  aria-label={social.label}
-                  className="w-10 h-10 flex items-center justify-center rounded-full bg-white/5 border border-white/10 text-secondary-300 hover:bg-primary-500 hover:text-state-500 hover:border-primary-500 transition-colors duration-300"
-                >
-                  <social.icon className="w-4 h-4" />
-                </a>
-              ))}
-            </div>
           </div>
 
-          {/* ==================== ستون‌های ۲ و ۳: لینک‌ها ==================== */}
+          {/* ==================== ستون ۲: لینک‌ها ==================== */}
           {footerLinks.map((section) => (
             <div key={section.title} className="flex flex-col gap-4">
               <div className="flex w-full max-lg:justify-between items-center gap-1">
@@ -115,7 +78,7 @@ export const Footer = () => {
             </div>
           ))}
 
-          {/* ==================== ستون ۴: تماس ==================== */}
+          {/* ==================== ستون ۳: تماس ==================== */}
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-1">
               <h4 className="text-base font-serif text-neutral-50">
@@ -141,20 +104,6 @@ export const Footer = () => {
               </li>
             </ul>
 
-            {/* فرم خبرنامه */}
-            <div className="relative w-full">
-              <input
-                type="email"
-                placeholder="Your email..."
-                className="w-full bg-white/5 border border-white/10 text-neutral-50 placeholder-secondary-500 text-sm rounded-full py-2 pl-4 pr-12 focus:outline-none focus:border-primary-500/50 focus:bg-white/10 transition-colors duration-300"
-              />
-              <button
-                aria-label="Subscribe"
-                className="absolute right-1.5 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-primary-500 hover:bg-primary-400 text-state-500 rounded-full transition-colors duration-300"
-              >
-                <FiSend className="w-4 h-4" />
-              </button>
-            </div>
           </div>
         </div>
 
@@ -170,20 +119,6 @@ export const Footer = () => {
           </p>
 
           <div className="flex items-center gap-4">
-            <Link
-              href="/privacy"
-              className="hover:text-primary-400 transition-colors"
-            >
-              Privacy
-            </Link>
-            <span className="w-1 h-1 rounded-full bg-secondary-600" />
-            <Link
-              href="/terms"
-              className="hover:text-primary-400 transition-colors"
-            >
-              Terms
-            </Link>
-            <span className="w-1 h-1 rounded-full bg-secondary-600" />
             <span className="flex items-center gap-1">
               Made with{" "}
               <span className="text-primary-400">Fedora Software</span> in Iran

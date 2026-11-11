@@ -1,58 +1,22 @@
-"use client";
-
-import { CoffeeItem } from "@/data";
-import { FaChevronRight } from "react-icons/fa6";
+import type { MenuItem } from "@/data";
 import { MenuCard } from "./MenuCard";
 
 interface MenuSectionProps {
+  group: string;
   title: string;
-  pTitle?: string;
-  items: CoffeeItem[];
-  onAdd?: (item: CoffeeItem) => void;
-  onClick?: (item: CoffeeItem) => void;
-  onViewAll?: () => void;
+  pTitle: string;
+  items: MenuItem[];
 }
 
-export const MenuSection: React.FC<MenuSectionProps> = ({
-  title,
-  pTitle,
-  items,
-  onAdd,
-  onClick,
-  onViewAll,
-}) => {
-  if (items.length === 0) return null;
-
-  return (
-    <section className="w-full max-w-7xl mx-auto py-10">
-      <div className="flex items-center justify-between mb-6">
-        <div className="flex items-center gap-2">
-          <h2 className="text-2xl md:text-3xl font-serif text-neutral-50">
-            {title}
-          </h2>
-          {pTitle && (
-            <span className="lg:text-sm text-xs text-secondary-400 font-light">
-              {`( ${pTitle} )`}
-            </span>
-          )}
-        </div>
-
-        {onViewAll && (
-          <button
-            onClick={onViewAll}
-            className="text-sm flex items-center gap-1 text-primary-500 hover:text-primary-400 hover:underline transition-all"
-          >
-            View All
-            <FaChevronRight className="w-3 h-3" />
-          </button>
-        )}
-      </div>
-
-      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-6">
-        {items.map((item) => (
-          <MenuCard key={item.id} item={item} onAdd={onAdd} onClick={onClick} />
-        ))}
-      </div>
-    </section>
-  );
-};
+export const MenuSection = ({ group, title, pTitle, items }: MenuSectionProps) => (
+  <section className="snap-start overflow-hidden rounded-2xl border border-primary-500/20 bg-state-400">
+    <header className="border-b border-white/10 bg-gradient-to-l from-primary-400/15 to-transparent px-4 py-4 sm:px-5">
+      <p className="mb-1 text-xs text-primary-400">{group}</p>
+      <h2 className="text-xl font-semibold text-neutral-50">{pTitle}</h2>
+      <p lang="en" dir="ltr" className="text-sm text-secondary-400 text-right">{title}</p>
+    </header>
+    <ul className="grid grid-cols-1 gap-2 p-2 sm:grid-cols-2 sm:p-3">
+      {items.map((item) => <MenuCard key={item[0]} item={item} />)}
+    </ul>
+  </section>
+);

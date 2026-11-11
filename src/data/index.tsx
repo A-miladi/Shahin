@@ -1,213 +1,157 @@
-import { StaticImageData } from "next/image";
-import Afogato from "../../public/images/Afogato.png";
-import Americano from "../../public/images/Americano.png";
-import Caramel from "../../public/images/Charamel.png";
-import Herbal from "../../public/images/Herbal.png";
-import IceLatte from "../../public/images/IceLatte.png";
-import IceMocha from "../../public/images/IceMocha.png";
-import Karak from "../../public/images/Karak.png";
-import Latte from "../../public/images/Latte.png";
-import Matcha from "../../public/images/Matcha.png";
-import Mocha from "../../public/images/Mocha.png";
-import Tea from "../../public/images/Tea.png";
+export type MenuItem = [
+  name: string,
+  pName: string,
+  image: string,
+];
 
-export interface CoffeeItem {
-  id: number;
-  name: string;
-  pName: string;
-  image: StaticImageData;
-  category: "Hot Drinks" | "Cold Drinks" | "Food" | "Snack";
-  price: number;
-  ingredients: string;
-  pIngredients: string;
-  description: string;
-  pDescription: string;
-  isPopular: boolean;
+interface MenuCategory {
+  title: string;
+  pTitle: string;
+  items: MenuItem[];
 }
 
-export const Images = {
-  Afogato,
-  Americano,
-  Caramel,
-  Herbal,
-  IceLatte,
-  IceMocha,
-  Karak,
-  Latte,
-  Matcha,
-  Mocha,
-  Tea,
-};
+interface MenuGroup {
+  title: string;
+  pTitle: string;
+  categories: MenuCategory[];
+}
 
-export const menuData: CoffeeItem[] = [
+export const menuGroups: MenuGroup[] = [
   {
-    id: 1,
-    name: "Espresso",
-    pName: "اسپرسو",
-    image: Images.Americano,
-    category: "Hot Drinks",
-    price: 50000,
-    ingredients: "Rich espresso shot, dark roast",
-    pIngredients: "یک شات اسپرسو غنی، رست تیره",
-    description: "A perfect balance of rich espresso.",
-    pDescription: "تعادلی کامل از اسپرسوی غنی و خوش‌طعم.",
-    isPopular: true,
+    title: "Cold Bar",
+    pTitle: "بار سرد",
+    categories: [
+      {
+        title: "Espresso-Based",
+        pTitle: "پایه اسپرسو",
+        items: [
+          ["Iced Americano", "آیس آمریکانو", "/images/menu/01-iced-americano.webp"],
+          ["Iced Latte", "آیس لته", "/images/menu/02-iced-latte.webp"],
+          ["Iced Mocha", "آیس موکا", "/images/menu/03-iced-mocha.webp"],
+          ["Iced Caramel Macchiato", "آیس کارامل ماکیاتو", "/images/menu/04-iced-caramel-macchiato.webp"],
+          ["Cold Brew", "کلد برو", "/images/menu/05-cold-brew.webp"],
+          ["Affogato", "آفوگاتو", "/images/menu/06-affogato.webp"],
+        ],
+      },
+      {
+        title: "Cold Drinks",
+        pTitle: "نوشیدنی سرد",
+        items: [
+          ["Iced Matcha Latte", "آیس ماچا لته", "/images/menu/iced-matcha-latte.webp"],
+        ],
+      },
+      {
+        title: "Smoothies",
+        pTitle: "اسموتی",
+        items: [
+          ["Tropical Mango", "ترپیکال انبه", "/images/menu/07-tropical-mango.webp"],
+          ["Apricot", "آپریکات", "/images/menu/08-apricot.webp"],
+          ["Red Berry", "رد بری", "/images/menu/09-red-berry.webp"],
+        ],
+      },
+      {
+        title: "Mocktails",
+        pTitle: "ماکتیل",
+        items: [
+          ["Mojito", "موهیتو", "/images/menu/10-mojito.webp"],
+          ["Lemonade", "لیموناد", "/images/menu/11-lemonade.webp"],
+          ["Blue Sky", "بلو اسکای", "/images/menu/12-blue-sky.webp"],
+          ["Red Summer", "رد سامر", "/images/menu/13-red-summer.webp"],
+          ["Piña Colada", "پینا کولادا", "/images/menu/14-pina-colada.webp"],
+          ["Sunrise", "سان رایز", "/images/menu/15-sunrise.webp"],
+          ["Bubble Gum", "بابل‌گام", "/images/menu/16-bubble-gum.webp"],
+          ["Margarita", "مارگاریتا", "/images/menu/17-margarita.webp"],
+        ],
+      },
+      {
+        title: "Milkshakes",
+        pTitle: "میلک‌شیک",
+        items: [
+          ["Chocolate", "شکلات", "/images/menu/18-chocolate.webp"],
+          ["Vanilla Biscuit", "وانیل بیسکوئیت", "/images/menu/19-vanilla-biscuit.webp"],
+          ["Lotus", "لوتوس", "/images/menu/20-lotus.webp"],
+          ["Peanut", "بادام زمینی", "/images/menu/21-peanut.webp"],
+          ["Coconut", "نارگیل", "/images/menu/22-coconut.webp"],
+          ["Date & Tahini", "خرما ارده", "/images/menu/23-date-tahini.webp"],
+        ],
+      },
+    ],
   },
   {
-    id: 2,
-    name: "Americano",
-    pName: "آمریکانو",
-    image: Images.Americano,
-    category: "Hot Drinks",
-    price: 60000,
-    ingredients: "Espresso, hot water",
-    pIngredients: "اسپرسو، آب گرم",
-    description: "Smooth and bold Americano.",
-    pDescription: "آمریکانوی ملایم و پرطعم.",
-    isPopular: true,
-  },
-  {
-    id: 3,
-    name: "Cappuccino",
-    pName: "کاپوچینو",
-    image: Images.Latte,
-    category: "Hot Drinks",
-    price: 75000,
-    ingredients: "Espresso, steamed milk, milk foam",
-    pIngredients: "اسپرسو، شیر بخارپز، کف شیر",
-    description:
-      "A perfect balance of rich espresso, steamed milk and velvety foam.",
-    pDescription: "ترکیبی متعادل از اسپرسو، شیر بخارپز و کف مخملی.",
-    isPopular: false,
-  },
-  {
-    id: 4,
-    name: "Latte",
-    pName: "لاته",
-    image: Images.Latte,
-    category: "Hot Drinks",
-    price: 80000,
-    ingredients: "Espresso, steamed milk, light foam",
-    pIngredients: "اسپرسو، شیر بخارپز، کف سبک",
-    description: "Smooth and creamy latte.",
-    pDescription: "لاته‌ای نرم و خامه‌ای.",
-    isPopular: true,
-  },
-  {
-    id: 5,
-    name: "Mocha",
-    pName: "موکا",
-    image: Images.Mocha,
-    category: "Hot Drinks",
-    price: 85000,
-    ingredients: "Espresso, chocolate, steamed milk",
-    pIngredients: "اسپرسو، شکلات، شیر بخارپز",
-    description: "A delightful blend of coffee and chocolate.",
-    pDescription: "ترکیبی دلپذیر از قهوه و شکلات.",
-    isPopular: false,
-  },
-  {
-    id: 6,
-    name: "Caramel Macchiato",
-    pName: "کارامل ماکیاتو",
-    image: Images.Caramel,
-    category: "Hot Drinks",
-    price: 90000,
-    ingredients: "Espresso, caramel, steamed milk",
-    pIngredients: "اسپرسو، کارامل، شیر بخارپز",
-    description: "Sweet caramel mixed with rich espresso.",
-    pDescription: "کارامل شیرین آمیخته با اسپرسوی غنی.",
-    isPopular: false,
-  },
-  {
-    id: 7,
-    name: "Matcha Latte",
-    pName: "ماچا لاته",
-    image: Images.Matcha,
-    category: "Hot Drinks",
-    price: 95000,
-    ingredients: "Matcha green tea, steamed milk",
-    pIngredients: "چای سبز ماچا، شیر بخارپز",
-    description: "Earthy matcha blended with creamy milk.",
-    pDescription: "ماچای طبیعی ترکیب‌شده با شیر خامه‌ای.",
-    isPopular: false,
-  },
-  {
-    id: 8,
-    name: "Ice Latte",
-    pName: "آیس لاته",
-    image: Images.IceLatte,
-    category: "Cold Drinks",
-    price: 85000,
-    ingredients: "Espresso, cold milk, ice",
-    pIngredients: "اسپرسو، شیر سرد، یخ",
-    description: "Refreshing iced latte for hot days.",
-    pDescription: "آیس لاته‌ای خنک و نشاط‌آور برای روزهای گرم.",
-    isPopular: true,
-  },
-  {
-    id: 9,
-    name: "Ice Mocha",
-    pName: "آیس موکا",
-    image: Images.IceMocha,
-    category: "Cold Drinks",
-    price: 90000,
-    ingredients: "Espresso, chocolate, cold milk, ice",
-    pIngredients: "اسپرسو، شکلات، شیر سرد، یخ",
-    description: "Chilled mocha with a rich chocolate taste.",
-    pDescription: "موکای خنک با طعم غنی شکلات.",
-    isPopular: false,
-  },
-  {
-    id: 10,
-    name: "Afogato",
-    pName: "آفوگاتو",
-    image: Images.Afogato,
-    category: "Cold Drinks",
-    price: 100000,
-    ingredients: "Vanilla ice cream, hot espresso",
-    pIngredients: "بستنی وانیلی، اسپرسو داغ",
-    description: "A delightful mix of hot espresso over cold ice cream.",
-    pDescription: "ترکیبی لذت‌بخش از اسپرسوی داغ روی بستنی سرد.",
-    isPopular: false,
-  },
-  {
-    id: 11,
-    name: "Karak Tea",
-    pName: "چای کرک",
-    image: Images.Karak,
-    category: "Hot Drinks",
-    price: 45000,
-    ingredients: "Black tea, milk, cardamom, sugar",
-    pIngredients: "چای سیاه، شیر، هل، شکر",
-    description: "Traditional Middle Eastern milk tea.",
-    pDescription: "چای شیری سنتی خاورمیانه.",
-    isPopular: false,
-  },
-  {
-    id: 12,
-    name: "Herbal Tea",
-    pName: "چای گیاهی",
-    image: Images.Herbal,
-    category: "Hot Drinks",
-    price: 40000,
-    ingredients: "Mixed herbs, hot water",
-    pIngredients: "گیاهان دارویی مخلوط، آب گرم",
-    description: "A soothing blend of herbal tea.",
-    pDescription: "ترکیبی آرام‌بخش از چای گیاهی.",
-    isPopular: false,
-  },
-  {
-    id: 13,
-    name: "Tea",
-    pName: "چای",
-    image: Images.Tea,
-    category: "Hot Drinks",
-    price: 30000,
-    ingredients: "Black tea, hot water",
-    pIngredients: "چای سیاه، آب گرم",
-    description: "Classic hot black tea.",
-    pDescription: "چای سیاه داغ کلاسیک.",
-    isPopular: false,
+    title: "Hot Bar",
+    pTitle: "بار گرم",
+    categories: [
+      {
+        title: "Espresso-Based",
+        pTitle: "پایه اسپرسو",
+        items: [
+          ["Robusta Espresso + Mineral Water", "اسپرسو روبوستا + آب معدنی", "/images/menu/24-robusta-espresso-mineral-water.webp"],
+          ["50/50 Espresso + Mineral Water", "اسپرسو ۵۰–۵۰ + آب معدنی", "/images/menu/25-50-50-espresso-mineral-water.webp"],
+          ["Arabica Espresso + Mineral Water", "اسپرسو عربیکا + آب معدنی", "/images/menu/26-arabica-espresso-mineral-water.webp"],
+          ["Americano", "آمریکانو", "/images/menu/27-americano.webp"],
+          ["Macchiato", "ماکیاتو", "/images/menu/28-macchiato.webp"],
+          ["Espresso con Panna", "کُن پانا", "/images/menu/29-espresso-con-panna.webp"],
+          ["Latte", "لاته", "/images/menu/30-latte.webp"],
+          ["Mocha", "موکا", "/images/menu/31-mocha.webp"],
+          ["Cappuccino", "کاپوچینو", "/images/menu/32-cappuccino.webp"],
+        ],
+      },
+      {
+        title: "Hot Drinks",
+        pTitle: "گرم‌نوش",
+        items: [
+          ["Pistachio & Saffron Milk", "شیر پسته زعفران", "/images/menu/33-pistachio-saffron-milk.webp"],
+          ["Milk with Cream & Walnut", "شیر خامه گردو", "/images/menu/34-milk-with-cream-walnut.webp"],
+          ["Caramel Biscuit Milk", "شیر کارامل بیسکوئیت", "/images/menu/35-caramel-biscuit-milk.webp"],
+          ["Coconut Milk", "شیر نارگیل", "/images/menu/36-coconut-milk.webp"],
+          ["Gulf-Style Saffron Masala", "ماسالا خلیجی زعفرانی", "/images/menu/37-gulf-style-saffron-masala.webp"],
+          ["Hot Chocolate", "هات چاکلت", "/images/menu/38-hot-chocolate.webp"],
+          ["Dark Chocolate", "دارک چاکلت", "/images/menu/39-dark-chocolate.webp"],
+          ["White Chocolate", "وایت چاکلت", "/images/menu/40-white-chocolate.webp"],
+          ["Masala", "ماسالا", "/images/menu/41-masala.webp"],
+          ["Chocolate Masala", "ماسالا چاکلت", "/images/menu/42-chocolate-masala.webp"],
+          ["Chai Latte", "چای لاته", "/images/menu/43-chai-latte.webp"],
+          ["Matcha Latte", "ماچا لته", "/images/menu/matcha-latte.webp"],
+          ["Nescafé with Milk", "شیر نسکافه", "/images/menu/44-nescafe-with-milk.webp"],
+          ["Chocolate Milk", "شیر کاکائو", "/images/menu/45-chocolate-milk.webp"],
+          ["Turkish Coffee", "ترک", "/images/menu/46-turkish-coffee.webp"],
+        ],
+      },
+      {
+        title: "Tea & Herbal Infusions",
+        pTitle: "دمنوش",
+        items: [
+          ["Relaxation Blend", "آرامش", "/images/menu/47-relaxation-blend.webp"],
+          ["Persian Borage", "گل گاوزبان", "/images/menu/48-persian-borage.webp"],
+          ["Persian Borage & Lemon Verbena", "گل گاوزبان، به‌لیمو", "/images/menu/49-persian-borage-lemon-verbena.webp"],
+          ["Thyme", "آویشن", "/images/menu/50-thyme.webp"],
+          ["Thyme & Lemon Verbena", "آویشن، به‌لیمو", "/images/menu/51-thyme-lemon-verbena.webp"],
+          ["Lemon Verbena", "به‌لیمو", "/images/menu/52-lemon-verbena.webp"],
+          ["Hibiscus Tea", "چای ترش", "/images/menu/53-hibiscus-tea.webp"],
+          ["Green Tea", "چای سبز", "/images/menu/54-green-tea.webp"],
+          ["Saffron Tea", "چای زعفران", "/images/menu/55-saffron-tea.webp"],
+          ["Brewed Tea (Cardamom, Cinnamon & Ginger)", "چای دمی (هل، دارچین، زنجبیل)", "/images/menu/56-brewed-tea-cardamom-cinnamon-ginger.webp"],
+        ],
+      },
+      {
+        title: "Brewed Coffee",
+        pTitle: "دمی",
+        items: [
+          ["V60", "V60", "/images/menu/57-v60.webp"],
+          ["Chemex", "کمکس", "/images/menu/58-chemex.webp"],
+          ["AeroPress", "ایروپرس", "/images/menu/59-aeropress.webp"],
+        ],
+      },
+      {
+        title: "Syrups",
+        pTitle: "سیروپ",
+        items: [
+          ["Caramel", "کارامل", "/images/menu/60-caramel.webp"],
+          ["Coconut", "نارگیل", "/images/menu/61-coconut.webp"],
+          ["Hazelnut", "فندق", "/images/menu/62-hazelnut.webp"],
+          ["Irish", "آیریش", "/images/menu/63-irish.webp"],
+        ],
+      },
+    ],
   },
 ];

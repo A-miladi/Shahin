@@ -1,48 +1,25 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono, Audiowide, Sofia, Trirong } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
-import { Navbar } from "@/common/layout/Navigation/desktop/Navbar";
-import { Footer } from "@/common/layout/footer";
-import { BottomTab } from "@/common/layout/Navigation/mobile/BottomTab";
-import { ScrollToTop } from "@/utils/ScrollToTop";
-import { ToastProvider } from "@/providers/ToastProvider";
-import { PaymentProvider } from "@/providers/PaymentProvider";
+import { RegisterServiceWorker } from "./RegisterServiceWorker";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const geist = localFont({
+  src: "./fonts/geist-latin.woff2",
+  weight: "100 900",
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-const audiowide = Audiowide({
+const audiowide = localFont({
+  src: "./fonts/audiowide-latin.woff2",
   variable: "--font-audiowide",
-  subsets: ["latin"],
   weight: "400",
-});
-
-const sofia = Sofia({
-  variable: "--font-sofia",
-  subsets: ["latin"],
-  weight: "400",
-});
-
-const trirong = Trirong({
-  variable: "--font-trirong",
-  subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-  style: ["normal", "italic"],
+  display: "swap",
 });
 
 export const viewport: Viewport = {
-  themeColor: "#0c0c0c",
+  themeColor: "#050302",
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
   viewportFit: "cover",
 };
 
@@ -53,7 +30,7 @@ export const metadata: Metadata = {
     template: "%s | Shahin Cafe",
   },
   description:
-    "Premium coffee, fresh ingredients, and a unique experience. Order your favorite drinks online.",
+    "Premium coffee, fresh ingredients, and a unique experience. Explore the Shahin Cafe menu.",
 
   manifest: "/manifest.webmanifest",
   applicationName: "Shahin Cafe",
@@ -62,7 +39,6 @@ export const metadata: Metadata = {
     capable: true,
     statusBarStyle: "black-translucent",
     title: "Shahin",
-    startupImage: ["/icons/apple-splash-2048-2732.png"],
   },
 
   icons: {
@@ -89,9 +65,9 @@ export const metadata: Metadata = {
     description: "Premium coffee, fresh ingredients, and a unique experience.",
     images: [
       {
-        url: "/images/og-image.jpg",
-        width: 1200,
-        height: 630,
+        url: "/images/DesktopHero.png",
+        width: 1672,
+        height: 941,
         alt: "Shahin Cafe",
       },
     ],
@@ -101,7 +77,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Shahin Cafe | More Than Just Coffee",
     description: "Premium coffee, fresh ingredients, and a unique experience.",
-    images: ["/images/og-image.jpg"],
+    images: ["/images/DesktopHero.png"],
   },
 
   formatDetection: {
@@ -113,39 +89,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`
-        ${geistSans.variable}
-        ${geistMono.variable}
-        ${audiowide.variable}
-        ${sofia.variable}
-        ${trirong.variable}
-        h-full antialiased custom-scrollbar
-      `}
+      className={`${geist.className} ${audiowide.variable} h-full antialiased custom-scrollbar`}
       suppressHydrationWarning
     >
-      <head>
-        <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta
-          name="apple-mobile-web-app-status-bar-style"
-          content="black-translucent"
-        />
-        <meta name="apple-mobile-web-app-title" content="Shahin" />
-
-        <meta name="msapplication-TileColor" content="#0c0c0c" />
-        <meta name="msapplication-tap-highlight" content="no" />
-
-        <meta name="mobile-web-app-capable" content="yes" />
-      </head>
-      <body className="min-h-full bg-black flex flex-col safe-x">
-        <ScrollToTop />
-        <ToastProvider />
-        <PaymentProvider>
-          <Navbar />
-          {children}
-          <Footer />
-          <BottomTab />
-        </PaymentProvider>
+      <body className="min-h-full bg-[#050302] flex flex-col safe-x" suppressHydrationWarning>
+        <RegisterServiceWorker />
+        {children}
       </body>
     </html>
   );
