@@ -320,13 +320,15 @@ function Track({ items }: { items: typeof entries }) {
             onClick={() => controls.current?.select(index)}
           >
             <span className={styles.cardIndex}>{number(index + 1)}</span>
-            <span className={styles.shot}>
-              <Image src={image} alt="" fill unoptimized />
-            </span>
-            <span className={styles.cardMeta}>
-              <span className={styles.category} lang="fa" dir="rtl">{group} / {category}</span>
-              <strong lang="fa" dir="rtl">{pName}</strong>
-              <span className={styles.english}>{name}</span>
+            <span className={styles.cardContent}>
+              <span className={styles.shot}>
+                <Image src={image} alt="" fill unoptimized loading="eager" />
+              </span>
+              <span className={styles.cardMeta}>
+                <span className={styles.category} lang="fa" dir="rtl">{group} / {category}</span>
+                <strong lang="fa" dir="rtl">{pName}</strong>
+                <span className={styles.english}>{name}</span>
+              </span>
             </span>
             <span className={styles.price} aria-label="Price pending">-</span>
           </button>
