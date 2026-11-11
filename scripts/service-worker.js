@@ -7,8 +7,13 @@ self.addEventListener("install", (event) => {
   event.waitUntil((async () => {
     const cache = await caches.open(cacheName);
     await cache.addAll(offlineUrls.map((url) => new Request(url, { cache: "reload" })));
-    await self.skipWaiting();
   })());
+});
+
+self.addEventListener("message", (event) => {
+  if (event.data === "SKIP_WAITING") {
+    event.waitUntil(self.skipWaiting());
+  }
 });
 
 self.addEventListener("activate", (event) => {
