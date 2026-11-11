@@ -28,7 +28,8 @@
   .page {
     position: fixed;
     inset: 0;
-    height: auto;
+    height: 100vh;
+    height: 100dvh;
     min-height: 0;
     overflow: hidden;
     padding-bottom: env(safe-area-inset-bottom, 0px);
@@ -241,10 +242,15 @@
   .model { width: 78%; height: 62%; transform-origin: center; }
   .header { grid-template-columns: 1fr auto; gap: .75rem; padding: .9rem 1rem; }
   .searchPanel { width: 100%; }
-  .track { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) 216px; }
+  .track {
+    --rail-arc: 56px;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr) calc(160px + var(--rail-arc));
+  }
   .ring { display: none; }
   .card {
     --arc-angle: clamp(-90deg, calc(var(--offset, 0) * 55deg), 90deg);
+    --arc-drop: calc((1 - cos(var(--arc-angle))) * var(--rail-arc));
     --card-distance: clamp(0, max(var(--offset, 0), -1 * var(--offset, 0)), 1);
     left: 50%;
     height: 160px;
@@ -253,7 +259,7 @@
     transform: translate3d(calc(var(--offset) * 100% - 50%), 0, 0);
     transform: translate3d(
       calc(var(--offset, 0) * 100% - 50%),
-      calc((1 - cos(var(--arc-angle))) * 56px),
+      var(--arc-drop),
       0
     );
   }
@@ -283,6 +289,20 @@
     -webkit-line-clamp: 2;
   }
   .price { right: 12px; bottom: 16px; }
+
+  @media (display-mode: standalone) {
+    .page { padding-bottom: 0; }
+    .track {
+      --rail-arc: 28px;
+      --rail-safe-bottom: env(safe-area-inset-bottom, 0px);
+      grid-template-rows: minmax(0, 1fr) calc(160px + var(--rail-arc) + var(--rail-safe-bottom));
+    }
+    .card::before {
+      bottom: calc(var(--arc-drop, 0px) - var(--rail-arc) - var(--rail-safe-bottom));
+      border-end-start-radius: 0;
+      border-end-end-radius: 0;
+    }
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   .ring { transition: none; }
