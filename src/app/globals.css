@@ -71,6 +71,14 @@
 
 /* ==================== Base ==================== */
 
+@media (display-mode: standalone) {
+  html,
+  body {
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
+}
+
 button {
   cursor: pointer;
 }

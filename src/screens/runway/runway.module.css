@@ -24,6 +24,19 @@
   padding: 1.25rem clamp(1.25rem, 3vw, 3rem);
 }
 
+@media (display-mode: standalone) {
+  .page {
+    position: fixed;
+    inset: 0;
+    height: auto;
+    min-height: 0;
+    overflow: hidden;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  .rail { touch-action: none; }
+}
+
 .brand, .counterLabel, .cardIndex {
   font-family: var(--font-audiowide), sans-serif;
   letter-spacing: .12em;
