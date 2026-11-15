@@ -30,9 +30,6 @@
 
 @media (display-mode: standalone) {
   .page {
-    position: fixed;
-    inset: 0;
-    height: 100vh;
     height: 100dvh;
     min-height: 0;
     overflow: hidden;
@@ -147,28 +144,12 @@
 .categorySelection {
   display: grid;
   justify-items: center;
+  gap: .2rem;
   width: 100%;
-}
-.activeCategoryLabel {
-  position: absolute;
-  top: 50%;
-  right: 100%;
-  translate: 0 -50%;
-  color: #ffe2b1;
-  font-size: .8rem;
-  white-space: nowrap;
-  text-shadow: 0 1px 5px #000, 0 1px 9px #000;
-  pointer-events: none;
-  overflow: hidden;
-  padding: .2rem .5rem;
-}
-.activeCategoryLabel > span { display: block; }
-@media (prefers-reduced-motion: no-preference) {
-  .activeCategoryLabel > span { animation: category-label-reveal 320ms cubic-bezier(.2, .7, .3, 1) both; }
-}
-@keyframes category-label-reveal {
-  from { translate: 105% 0; opacity: 0; }
-  to { translate: 0 0; opacity: 1; }
+  padding-inline: .15rem;
+  font-size: .6rem;
+  line-height: 1.1;
+  text-align: center;
 }
 .categoryArtwork {
   position: relative;
@@ -436,7 +417,6 @@
   .price { right: 12px; bottom: 16px; }
 
   @media (display-mode: standalone) {
-    .page { padding-bottom: 0; }
     .track {
       grid-template-rows: minmax(0, 1fr) calc(160px + var(--rail-arc) - 8px);
     }

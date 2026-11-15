@@ -486,7 +486,6 @@ function Track({ items }: { items: typeof entries }) {
 export function Runway() {
   const categoryList = useRef<HTMLDivElement>(null);
   const activeCategoryButton = useRef<HTMLButtonElement>(null);
-  const activeCategoryLabel = useRef<HTMLSpanElement>(null);
   const [searchOpen, setSearchOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState("");
@@ -505,24 +504,10 @@ export function Runway() {
     if (searchOpen) searchInput.current?.focus();
   }, [searchOpen]);
 
-  function positionCategoryLabel() {
-    const list = categoryList.current;
-    const button = activeCategoryButton.current;
-    const label = activeCategoryLabel.current;
-    if (!list || !button || !label) return;
-
-    const bounds = list.getBoundingClientRect();
-    const item = button.getBoundingClientRect();
-    const center = item.top + item.height / 2;
-    label.style.top = `${center - bounds.top + list.offsetTop}px`;
-    label.style.visibility = center < bounds.top || center > bounds.bottom ? "hidden" : "visible";
-  }
-
   useEffect(() => {
     const list = categoryList.current;
     const button = activeCategoryButton.current;
     if (!list || !button) return;
-    positionCategoryLabel();
 
     const listBounds = list.getBoundingClientRect();
     const buttonBounds = button.getBoundingClientRect();
@@ -590,7 +575,6 @@ export function Runway() {
         <div className={styles.categorySlider} lang="fa" dir="rtl">
           <div
             ref={categoryList}
-            onScroll={positionCategoryLabel}
             className={styles.categoryList}
             role="group"
             aria-label="دسته‌بندی منو"
@@ -602,7 +586,6 @@ export function Runway() {
                 type="button"
                 className={styles.categoryStep}
                 aria-pressed={value === filter}
-                aria-label={label}
                 onClick={() => setFilter(value)}
               >
                 <span className={styles.categorySelection}>
@@ -613,13 +596,11 @@ export function Runway() {
                       <FiGrid />
                     )}
                   </span>
+                  <span>{label}</span>
                 </span>
               </button>
             ))}
           </div>
-          <span ref={activeCategoryLabel} className={styles.activeCategoryLabel} aria-hidden="true">
-            <span key={filter}>{menuFilters.find(({ value }) => value === filter)?.label}</span>
-          </span>
         </div>
       </header>
       {items.length > 0 ? (
