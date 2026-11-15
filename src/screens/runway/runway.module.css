@@ -370,7 +370,7 @@
     --rail-arc: 30px;
     grid-template-columns: minmax(0, 1fr);
     grid-template-rows: minmax(0, 1fr) calc(160px + var(--rail-arc));
-    padding-bottom: 10px;
+    padding-bottom: 18px;
   }
   .ring { display: none; }
   .rail { isolation: isolate; }
